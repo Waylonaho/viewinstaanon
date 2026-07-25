@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ViewInstaAnon — Watch Instagram Stories Anonymously Without Login</title>
+  <meta name="description" content="View and download Instagram stories, highlights, and posts anonymously without logging in. Fast, free, untraceable online story viewer tool.">
+  
+  <!-- Google Fonts & Tailwind CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- YOUR CPAGRIP LOCKER SCRIPT -->
+  <script type="text/javascript">var lck = false;</script>
+  <script type="text/javascript" src="https://tundrafile.com/script_include.php?id=1906381"></script>
+  <script type="text/javascript">if(!lck){top.location = 'https://tundrafile.com/help/ablk.php?lkt=1'; }</script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #0b0f19;
+    }
+    .bg-gradient-radial {
+      background: radial-gradient(circle at 50% 20%, rgba(225, 29, 72, 0.15) 0%, rgba(139, 92, 246, 0.15) 35%, rgba(11, 15, 25, 1) 70%);
+    }
+    .glass-card {
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #f43f5e 0%, #a855f7 50%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-gradient-radial text-slate-100 min-h-screen flex flex-col justify-between items-center p-4 antialiased">
+
+  <!-- NAVBAR / BRANDING -->
+  <header class="w-full max-w-5xl flex justify-between items-center py-6 px-4">
+    <div class="flex items-center gap-3">
+      <!-- SVG LOGO -->
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-500 via-purple-600 to-blue-500 p-0.5 shadow-lg shadow-rose-500/20">
+        <div class="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center">
+          <svg class="w-6 h-6 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+          </svg>
+        </div>
+      </div>
+      <span class="text-2xl font-extrabold tracking-tight text-white">ViewInsta<span class="text-rose-500">Anon</span></span>
+    </div>
+
+    <div class="flex items-center gap-2 text-xs text-slate-400 bg-slate-800/60 border border-slate-700/50 px-3 py-1.5 rounded-full">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      System Active
+    </div>
+  </header>
+
+  <!-- HERO MAIN SECTION -->
+  <main class="w-full max-w-2xl text-center my-auto px-4">
+    <div class="inline-flex items-center gap-2 bg-slate-800/80 border border-slate-700/60 px-4 py-1.5 rounded-full text-xs font-semibold text-rose-300 mb-6 shadow-sm">
+      <span>🔒 100% Anonymous & Private — No Login Needed</span>
+    </div>
+
+    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
+      Watch Instagram Stories <br>
+      <span class="text-gradient">Without Them Knowing</span>
+    </h1>
+    <p class="text-slate-400 text-base md:text-lg mb-8 max-w-xl mx-auto">
+      Enter any public Instagram handle to view active stories, highlights, and posts completely undetected.
+    </p>
+
+    <!-- SEARCH FORM -->
+    <div id="search-container" class="glass-card p-2 md:p-3 rounded-2xl shadow-2xl mb-6">
+      <form id="search-form" class="flex flex-col md:flex-row gap-2">
+        <div class="relative flex-1">
+          <span class="absolute inset-y-0 left-4 flex items-center text-slate-500 font-bold">@</span>
+          <input type="text" id="username" placeholder="enter_username (e.g. selenagomez)" 
+            class="w-full pl-9 pr-4 py-3.5 bg-slate-900/80 text-white rounded-xl border border-slate-800 focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 text-sm transition" required />
+        </div>
+        <button type="submit" class="bg-gradient-to-r from-rose-500 via-purple-600 to-blue-600 hover:opacity-95 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-rose-500/25 transition transform active:scale-95 text-sm">
+          Fetch Stories
+        </button>
+      </form>
+    </div>
+
+    <!-- PROGRESS LOADING BOX -->
+    <div id="loading-box" class="hidden glass-card p-6 rounded-2xl text-center mb-6">
+      <div class="inline-block animate-spin rounded-full h-8 w-8 border-2 border-rose-500 border-t-transparent mb-3"></div>
+      <p id="status-text" class="text-sm font-semibold text-slate-300">Establishing encrypted proxy route...</p>
+      <div class="w-full bg-slate-800 rounded-full h-2 mt-4 overflow-hidden border border-slate-700/50">
+        <div id="progress-bar" class="bg-gradient-to-r from-rose-500 to-purple-500 h-2 rounded-full w-0 transition-all duration-300"></div>
+      </div>
+    </div>
+
+    <!-- LOCKED RESULT / UNLOCKED MEDIA CONTAINER -->
+    <div id="lock-container" class="hidden glass-card p-8 rounded-2xl text-center border-rose-500/30">
+      <div class="w-16 h-16 bg-rose-500/10 border border-rose-500/30 rounded-2xl flex items-center justify-center mx-auto mb-4">
+        <svg class="w-8 h-8 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+        </svg>
+      </div>
+
+      <h3 class="text-2xl font-bold text-white mb-2">Media Extracted for <span id="target-user" class="text-gradient"></span></h3>
+      <p class="text-xs text-slate-400 mb-6 max-w-md mx-auto">
+        Public active stories & highlights prepared. Complete quick human verification to unlock full anonymous media stream.
+      </p>
+
+      <button onclick="trigger_cpagrip_locker();" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-extrabold py-4 px-6 rounded-xl text-base transition transform hover:scale-[1.02] active:scale-98 shadow-xl shadow-emerald-500/20">
+        Unlock Media Stream Now
+      </button>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="w-full max-w-5xl py-6 text-center border-t border-slate-800/60 text-xs text-slate-500">
+    <p>© 2026 ViewInstaAnon. All rights reserved. Free tool designed for public research and social media accessibility.</p>
+  </footer>
+
+  <!-- INTERACTION & AUTO-FETCH LOGIC -->
+  <script>
+    // REPLACE WITH YOUR ACTUAL RENDER WEB SERVICE URL
+    const RENDER_API_URL = "https://your-app-name.onrender.com/api/story";
+
+    let currentSearchedUser = sessionStorage.getItem('target_username') || "";
+
+    // 1. CHECK IF USER WAS REDIRECTED BACK AFTER COMPLETING AN OFFER
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const isUnlocked = urlParams.get('unlocked') === 'true';
+      const paramUser = urlParams.get('username');
+
+      if (paramUser) {
+        currentSearchedUser = paramUser;
+      }
+
+      if (isUnlocked && currentSearchedUser) {
+        // Hide search inputs & instantly fetch stories from Render API
+        document.getElementById('search-container').classList.add('hidden');
+        onOfferCompleted();
+      }
+    });
+
+    // 2. HANDLE SEARCH FORM SUBMISSION
+    document.getElementById('search-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const user = document.getElementById('username').value.trim();
+      if (!user) return;
+
+      currentSearchedUser = user;
+      sessionStorage.setItem('target_username', user);
+
+      const loadingBox = document.getElementById('loading-box');
+      const lockContainer = document.getElementById('lock-container');
+      const statusText = document.getElementById('status-text');
+      const progressBar = document.getElementById('progress-bar');
+      const targetUserSpan = document.getElementById('target-user');
+
+      lockContainer.classList.add('hidden');
+      loadingBox.classList.remove('hidden');
+      targetUserSpan.innerText = '@' + user;
+
+      let stepIdx = 0;
+      const steps = [
+        { pct: 20, text: "Connecting to residential proxy node..." },
+        { pct: 45, text: "Querying public media for @" + user + "..." },
+        { pct: 75, text: "Decrypting high-definition story feeds..." },
+        { pct: 100, text: "Media Ready — Verification Required!" }
+      ];
+
+      const interval = setInterval(() => {
+        if (stepIdx < steps.length) {
+          progressBar.style.width = steps[stepIdx].pct + '%';
+          statusText.innerText = steps[stepIdx].text;
+          stepIdx++;
+        } else {
+          clearInterval(interval);
+          loadingBox.classList.add('hidden');
+          lockContainer.classList.remove('hidden');
+        }
+      }, 700);
+    });
+
+    // 3. TRIGGER CPAGRIP LOCKER
+    function trigger_cpagrip_locker() {
+      if (typeof CPAGripLocker === 'function') {
+        CPAGripLocker();
+      } else if (typeof call_locker === 'function') {
+        call_locker();
+      } else {
+        alert("Verification offer loading... Please check your internet connection or turn off adblockers.");
+      }
+    }
+
+    // 4. FETCH AND DISPLAY MEDIA FROM RENDER API
+    async function onOfferCompleted() {
+      const lockContainer = document.getElementById('lock-container');
+      lockContainer.classList.remove('hidden');
+      
+      lockContainer.innerHTML = `
+        <div class="inline-block animate-spin rounded-full h-8 w-8 border-2 border-emerald-500 border-t-transparent mb-3"></div>
+        <p class="text-sm font-semibold text-emerald-400">Verification confirmed! Loading unlocked media for @${currentSearchedUser}...</p>
+      `;
+
+      try {
+        const response = await fetch(`${RENDER_API_URL}?username=${encodeURIComponent(currentSearchedUser)}`);
+        const data = await response.json();
+
+        if (!data.stories || data.stories.length === 0) {
+          lockContainer.innerHTML = `
+            <p class="text-rose-400 font-semibold mb-2">No active public stories found for @${currentSearchedUser}.</p>
+            <p class="text-xs text-slate-400">The profile may be private or hasn't posted a public story in the last 24 hours.</p>
+          `;
+          return;
+        }
+
+        let mediaHTML = `<h3 class="text-2xl font-bold text-white mb-6">Unlocked Stories for <span class="text-gradient">@${currentSearchedUser}</span></h3>`;
+        mediaHTML += `<div class="grid grid-cols-1 md:grid-cols-2 gap-4">`;
+
+        data.stories.forEach(item => {
+          mediaHTML += `
+            <div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
+              ${item.media_type === 'video' 
+                ? `<video src="${item.url}" controls class="w-full rounded-lg mb-3 max-h-80 object-cover"></video>` 
+                : `<img src="${item.url}" class="w-full rounded-lg mb-3 max-h-80 object-cover"/>`}
+              <a href="${item.url}" download target="_blank" rel="noopener noreferrer" class="block text-xs bg-emerald-600 hover:bg-emerald-500 py-2.5 rounded-lg text-white font-bold transition">
+                Download High-Res
+              </a>
+            </div>
+          `;
+        });
+
+        mediaHTML += `</div>`;
+        lockContainer.innerHTML = mediaHTML;
+
+      } catch (error) {
+        lockContainer.innerHTML = `
+          <p class="text-rose-400 font-semibold">Error retrieving story stream from server. Please try again later.</p>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>
