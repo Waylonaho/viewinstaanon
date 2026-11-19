@@ -196,7 +196,7 @@ export default function HomePage() {
             </div>
 
             <a
-              href="https://buy.stripe.com/YOUR_SOLO_STRIPE_LINK"
+              href="https://buy.stripe.com/7sYcN52pz8MZc9u8K52VG01"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-center text-sm transition border border-slate-700"
@@ -227,7 +227,7 @@ export default function HomePage() {
             </div>
 
             <a
-              href="https://buy.stripe.com/YOUR_AGENCY_STRIPE_LINK"
+              href="https://buy.stripe.com/bJe00j5BL9R3ddyd0l2VG02"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full py-3 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 hover:opacity-95 text-white font-bold text-center text-sm transition"
