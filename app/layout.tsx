@@ -57,6 +57,14 @@ export default function RootLayout({
               <a href="/tools/bio-grader" className="hover:text-white transition">AI Bio Grader</a>
               <a href="/tools/safe-zone" className="hover:text-white transition">Reel Safe-Zone</a>
               <a href="/tools/utm-stripper" className="hover:text-white transition">UTM Stripper</a>
+              <a
+                href="https://billing.stripe.com/p/login/28E14n6FPd3fgpK8K52VG00"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition"
+              >
+                Manage Subscription
+              </a>
               <a href="/sitemap.xml" className="hover:text-white transition">Sitemap</a>
             </div>
           </div>
