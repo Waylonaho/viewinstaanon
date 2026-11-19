@@ -30,10 +30,11 @@ export default function RootLayout({
             </a>
 
             <nav className="flex items-center gap-3 sm:gap-6 text-xs sm:text-sm font-medium text-slate-300">
+              <a href="/niche/d2c-fitness-supplements" className="hover:text-white transition">Niches</a>
               <a href="/compare" className="hover:text-white transition">Compare</a>
               <a href="/tools/bio-grader" className="hover:text-white transition">Bio Grader</a>
-              <a href="/tools/safe-zone" className="hidden sm:inline hover:text-white transition">Safe-Zone</a>
-              <a href="/tools/utm-stripper" className="hidden md:inline hover:text-white transition">Link Cleaner</a>
+              <a href="/tools/safe-zone" className="hidden md:inline hover:text-white transition">Safe-Zone</a>
+              <a href="/tools/utm-stripper" className="hidden lg:inline hover:text-white transition">Link Cleaner</a>
               <a
                 href="/#pricing"
                 className="bg-rose-600 hover:bg-rose-500 text-white font-semibold px-3.5 py-1.5 rounded-lg transition text-xs"
@@ -52,7 +53,17 @@ export default function RootLayout({
         {/* Global Footer */}
         <footer className="w-full border-t border-slate-800/80 py-8 px-4 mt-16 text-xs text-slate-500">
           <div className="max-w-6xl mx-auto space-y-4">
-            <div className="flex flex-wrap justify-center sm:justify-start gap-4 text-slate-400 pb-4 border-b border-slate-900">
+            <div className="flex flex-wrap justify-center sm:justify-start gap-x-4 gap-y-2 text-slate-400 pb-4 border-b border-slate-900">
+              <span className="text-slate-600 font-semibold">Industry Benchmarks:</span>
+              <a href="/niche/d2c-fitness-supplements" className="hover:text-white transition">Fitness & Supplements</a>
+              <a href="/niche/skincare-beauty-cosmetics" className="hover:text-white transition">Skincare & Beauty</a>
+              <a href="/niche/b2b-saas-ai-tools" className="hover:text-white transition">B2B SaaS & AI</a>
+              <a href="/niche/ecommerce-fashion-apparel" className="hover:text-white transition">Fashion & Apparel</a>
+              <a href="/niche/personal-finance-investing" className="hover:text-white transition">Finance & Investing</a>
+              <a href="/niche/digital-marketing-growth-agencies" className="hover:text-white transition">Marketing Agencies</a>
+            </div>
+
+            <div className="flex flex-wrap justify-center sm:justify-start gap-x-4 gap-y-2 text-slate-400 pb-4 border-b border-slate-900">
               <span className="text-slate-600 font-semibold">Compare Alternatives:</span>
               <a href="/vs/hypeauditor" className="hover:text-white transition">HypeAuditor Alternative</a>
               <a href="/vs/modash" className="hover:text-white transition">Modash Alternative</a>
