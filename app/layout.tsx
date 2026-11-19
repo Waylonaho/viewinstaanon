@@ -51,23 +51,32 @@ export default function RootLayout({
 
         {/* Global Footer */}
         <footer className="w-full border-t border-slate-800/80 py-8 px-4 mt-16 text-xs text-slate-500">
-          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p>© {new Date().getFullYear()} ViewInstaAnon. Zero-footprint public social intelligence.</p>
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-5 text-slate-400">
-              <a href="/compare" className="hover:text-white transition">Compare Creators</a>
-              <a href="/tools/bio-grader" className="hover:text-white transition">Bio Grader</a>
-              <a href="/privacy" className="hover:text-white transition">Privacy</a>
-              <a href="/terms" className="hover:text-white transition">Terms</a>
-              <a href="/opt-out" className="hover:text-white transition">Opt-Out</a>
-              <a
-                href="https://billing.stripe.com/p/login/28E14n6FPd3fgpK8K52VG00"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition"
-              >
-                Manage Subscription
-              </a>
-              <a href="/sitemap.xml" className="hover:text-white transition">Sitemap</a>
+          <div className="max-w-6xl mx-auto space-y-4">
+            <div className="flex flex-wrap justify-center sm:justify-start gap-4 text-slate-400 pb-4 border-b border-slate-900">
+              <span className="text-slate-600 font-semibold">Compare Alternatives:</span>
+              <a href="/vs/hypeauditor" className="hover:text-white transition">HypeAuditor Alternative</a>
+              <a href="/vs/modash" className="hover:text-white transition">Modash Alternative</a>
+              <a href="/vs/sprout-social" className="hover:text-white transition">Sprout Social Alternative</a>
+              <a href="/vs/social-blade" className="hover:text-white transition">Social Blade Alternative</a>
+            </div>
+
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+              <p>© {new Date().getFullYear()} ViewInstaAnon. Zero-footprint public social intelligence.</p>
+              <div className="flex flex-wrap justify-center gap-4 sm:gap-5 text-slate-400">
+                <a href="/restore-pro" className="text-rose-400 hover:text-rose-300 font-medium transition">Restore Pro Pass</a>
+                <a
+                  href="https://billing.stripe.com/p/login/28E14n6FPd3fgpK8K52VG00"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition"
+                >
+                  Manage Subscription
+                </a>
+                <a href="/privacy" className="hover:text-white transition">Privacy</a>
+                <a href="/terms" className="hover:text-white transition">Terms</a>
+                <a href="/opt-out" className="hover:text-white transition">Opt-Out</a>
+                <a href="/sitemap.xml" className="hover:text-white transition">Sitemap</a>
+              </div>
             </div>
           </div>
         </footer>
