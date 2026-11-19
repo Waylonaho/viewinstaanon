@@ -29,10 +29,11 @@ export default function RootLayout({
               </span>
             </a>
 
-            <nav className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm font-medium text-slate-300">
+            <nav className="flex items-center gap-3 sm:gap-6 text-xs sm:text-sm font-medium text-slate-300">
+              <a href="/compare" className="hover:text-white transition">Compare</a>
               <a href="/tools/bio-grader" className="hover:text-white transition">Bio Grader</a>
-              <a href="/tools/safe-zone" className="hover:text-white transition">Safe-Zone</a>
-              <a href="/tools/utm-stripper" className="hover:text-white transition">Link Cleaner</a>
+              <a href="/tools/safe-zone" className="hidden sm:inline hover:text-white transition">Safe-Zone</a>
+              <a href="/tools/utm-stripper" className="hidden md:inline hover:text-white transition">Link Cleaner</a>
               <a
                 href="/#pricing"
                 className="bg-rose-600 hover:bg-rose-500 text-white font-semibold px-3.5 py-1.5 rounded-lg transition text-xs"
@@ -52,11 +53,12 @@ export default function RootLayout({
         <footer className="w-full border-t border-slate-800/80 py-8 px-4 mt-16 text-xs text-slate-500">
           <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
             <p>© {new Date().getFullYear()} ViewInstaAnon. Zero-footprint public social intelligence.</p>
-            <div className="flex flex-wrap justify-center gap-5 text-slate-400">
-              <a href="/" className="hover:text-white transition">X-Ray Search</a>
-              <a href="/tools/bio-grader" className="hover:text-white transition">AI Bio Grader</a>
-              <a href="/tools/safe-zone" className="hover:text-white transition">Reel Safe-Zone</a>
-              <a href="/tools/utm-stripper" className="hover:text-white transition">UTM Stripper</a>
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-5 text-slate-400">
+              <a href="/compare" className="hover:text-white transition">Compare Creators</a>
+              <a href="/tools/bio-grader" className="hover:text-white transition">Bio Grader</a>
+              <a href="/privacy" className="hover:text-white transition">Privacy</a>
+              <a href="/terms" className="hover:text-white transition">Terms</a>
+              <a href="/opt-out" className="hover:text-white transition">Opt-Out</a>
               <a
                 href="https://billing.stripe.com/p/login/28E14n6FPd3fgpK8K52VG00"
                 target="_blank"
