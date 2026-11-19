@@ -6,8 +6,21 @@ const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const INDEXNOW_KEY = process.env.INDEXNOW_KEY;
 const GOOGLE_CREDS = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON || '{}');
 
-// 1. Fetch newest audit pages from Supabase
+// 1. Fetch static, niche, comparison, and newest enriched audit pages from Supabase
 async function getUrlsToIndex() {
+  const nicheSlugs = [
+    'd2c-fitness-supplements',
+    'skincare-beauty-cosmetics',
+    'b2b-saas-ai-tools',
+    'ecommerce-fashion-apparel',
+    'personal-finance-investing',
+    'real-estate-architecture',
+    'food-beverage-coffee-brands',
+    'pet-care-accessories',
+    'digital-marketing-growth-agencies',
+    'productivity-creator-economy-educators',
+  ];
+
   const staticUrls = [
     `${SITE_URL}/`,
     `${SITE_URL}/compare`,
@@ -18,10 +31,11 @@ async function getUrlsToIndex() {
     `${SITE_URL}/tools/bio-grader`,
     `${SITE_URL}/tools/safe-zone`,
     `${SITE_URL}/tools/utm-stripper`,
+    ...nicheSlugs.map((slug) => `${SITE_URL}/niche/${slug}`),
   ];
 
   const res = await fetch(
-    `${SUPABASE_URL}/rest/v1/audits?select=username&order=updated_at.desc&limit=150`,
+    `${SUPABASE_URL}/rest/v1/audits?select=username&followers_count=gt.0&order=updated_at.desc&limit=150`,
     {
       headers: {
         apikey: SUPABASE_KEY,
