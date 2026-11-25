@@ -16,9 +16,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <head>
-        <meta name='impact-site-verification' value='52100c7d-08e5-47d2-9b4a-32ad3267190d' />
-      </head>
       <body className="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-rose-500/30 selection:text-rose-200">
         {/* Global Navigation */}
         <header className="w-full border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
@@ -75,7 +72,7 @@ export default function RootLayout({
             </div>
 
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-              <p>© {new Date().getFullYear()} ViewInstaAnon. Zero-footprint public social intelligence.</p>
+              <p>© {new Date().getFullYear()} ViewInstaAnon. Zero-footprint public social intelligence. • Impact-Site-Verification: 52100c7d-08e5-47d2-9b4a-32ad3267190d</p>
               <div className="flex flex-wrap justify-center gap-4 sm:gap-5 text-slate-400">
                 <a href="/restore-pro" className="text-rose-400 hover:text-rose-300 font-medium transition">Restore Pro Pass</a>
                 <a
