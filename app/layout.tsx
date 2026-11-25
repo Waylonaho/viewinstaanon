@@ -72,7 +72,7 @@ export default function RootLayout({
             </div>
 
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-              <p>© {new Date().getFullYear()} ViewInstaAnon. Zero-footprint public social intelligence. • Impact-Site-Verification: 52100c7d-08e5-47d2-9b4a-32ad3267190d</p>
+              <p>© {new Date().getFullYear()} ViewInstaAnon. Zero-footprint public social intelligence.</p>
               <div className="flex flex-wrap justify-center gap-4 sm:gap-5 text-slate-400">
                 <a href="/restore-pro" className="text-rose-400 hover:text-rose-300 font-medium transition">Restore Pro Pass</a>
                 <a
