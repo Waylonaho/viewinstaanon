@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     default: "ViewInstaAnon — B2B Creator & Competitor Instagram X-Ray",
     template: "%s | ViewInstaAnon"
     other: {
-    <meta name='impact-site-verification' value='52100c7d-08e5-47d2-9b4a-32ad3267190d'>
+  'impact-site-verification': '52100c7d-08e5-47d2-9b4a-32ad3267190d',
   },
   description: "Zero-login Instagram competitor intelligence. Audit creator sponsorships, isolate 3x+ viral Reel hooks, and reverse-engineer link-in-bio funnels.",
 };
