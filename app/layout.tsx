@@ -5,10 +5,8 @@ export const metadata: Metadata = {
   title: {
     default: "ViewInstaAnon — B2B Creator & Competitor Instagram X-Ray",
     template: "%s | ViewInstaAnon"
-  description: "Zero-login Instagram competitor intelligence. Audit creator sponsorships, isolate 3x+ viral Reel hooks, and reverse-engineer link-in-bio funnels.",
-  other: {
-  'impact-site-verification': '52100c7d-08e5-47d2-9b4a-32ad3267190d',
   },
+  description: "Zero-login Instagram competitor intelligence. Audit creator sponsorships, isolate 3x+ viral Reel hooks, and reverse-engineer link-in-bio funnels.",
 };
 
 export default function RootLayout({
@@ -18,6 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <meta name='impact-site-verification' value='52100c7d-08e5-47d2-9b4a-32ad3267190d' />
+      </head>
       <body className="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-rose-500/30 selection:text-rose-200">
         {/* Global Navigation */}
         <header className="w-full border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
