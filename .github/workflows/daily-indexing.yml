@@ -1,12 +1,12 @@
-name: Daily Search Engine Auto-Indexing
+name: Daily Search Engine Auto-Indexing & DB Maintenance
 
 on:
   schedule:
-    - cron: '0 14 * * *' # Runs automatically every day at 2:00 PM UTC
-  workflow_dispatch:     # Allows you to trigger it manually with 1 tap anytime
+    - cron: '0 2,14 * * *' # Runs at 2:00 AM UTC and 2:00 PM UTC daily
+  workflow_dispatch:       # Allows manual 1-tap test anytime
 
 jobs:
-  index-urls:
+  maintain-and-index:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -17,7 +17,14 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Run Lightweight DB Health & Sitemap Count Check
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/db-maintenance.mjs
+
       - name: Run Auto-Indexer (Google + IndexNow)
+        if: github.event.schedule != '0 2 * * *'
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
