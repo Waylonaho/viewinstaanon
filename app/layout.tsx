@@ -83,6 +83,7 @@ export default function RootLayout({
                 >
                   Manage Subscription
                 </a>
+                <a href="/about" className="hover:text-white transition">About & Disclosure</a>
                 <a href="/privacy" className="hover:text-white transition">Privacy</a>
                 <a href="/terms" className="hover:text-white transition">Terms</a>
                 <a href="/opt-out" className="hover:text-white transition">Opt-Out</a>
