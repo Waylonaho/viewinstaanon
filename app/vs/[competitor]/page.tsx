@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { Check, X, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
+import { Check, X, ArrowRight, ShieldCheck, Sparkles, ArrowUpRight } from 'lucide-react';
+import { AFFILIATE_LINKS } from '@/lib/affiliates';
 
 const COMPETITORS: Record<string, {
   name: string;
@@ -8,6 +9,10 @@ const COMPETITORS: Record<string, {
   tagline: string;
   painPoint: string;
   rows: { feature: string; us: string; them: string }[];
+  partnerTitle: string;
+  partnerDesc: string;
+  partnerCta: string;
+  partnerUrl: string;
 }> = {
   hypeauditor: {
     name: 'HypeAuditor',
@@ -22,6 +27,10 @@ const COMPETITORS: Record<string, {
       { feature: 'Link-in-Bio & ManyChat Funnel Spy', us: 'Included', them: 'Not Available' },
       { feature: 'White-Label Client Audit PDFs', us: '$49/mo Agency Plan', them: '$499+/mo Enterprise' },
     ],
+    partnerTitle: 'Running $25K+ Multi-Platform Influencer Campaigns Across TikTok, YouTube & Instagram?',
+    partnerDesc: 'Use ViewInstaAnon for instant Instagram X-Rays, or explore HypeAuditor directly when you need full enterprise CRM outreach, contract payouts, and cross-platform audience fraud scoring.',
+    partnerCta: 'Explore HypeAuditor Official',
+    partnerUrl: AFFILIATE_LINKS.hypeauditor,
   },
   modash: {
     name: 'Modash',
@@ -35,6 +44,10 @@ const COMPETITORS: Record<string, {
       { feature: 'Side-by-Side Creator Comparison', us: 'Free Head-to-Head Tool', them: 'Paid Seat Required' },
       { feature: 'ManyChat DM Funnel Detection', us: 'Automatic', them: 'Not Available' },
     ],
+    partnerTitle: 'Pair Competitor Audits With Full Multi-Channel Scheduling & Reporting',
+    partnerDesc: 'After vetting creators on ViewInstaAnon, manage your own Instagram, TikTok, and LinkedIn publishing calendars plus automated client reports in Metricool for free.',
+    partnerCta: 'Try Metricool Free',
+    partnerUrl: AFFILIATE_LINKS.metricool,
   },
   'sprout-social': {
     name: 'Sprout Social',
@@ -48,6 +61,10 @@ const COMPETITORS: Record<string, {
       { feature: 'Bio Tech Stack & Funnel Spy', us: 'Included', them: 'Not Available' },
       { feature: 'Setup Time', us: '5 Seconds', them: 'Days of Onboarding' },
     ],
+    partnerTitle: 'Skip $249/Seat Fees — Schedule & Report Across All Channels for Free',
+    partnerDesc: 'Combine ViewInstaAnon’s zero-login competitor intelligence with Metricool’s all-in-one social scheduler, inbox, and white-label analytics without per-seat enterprise bloat.',
+    partnerCta: 'Start Free With Metricool',
+    partnerUrl: AFFILIATE_LINKS.metricool,
   },
   'social-blade': {
     name: 'Social Blade',
@@ -61,6 +78,10 @@ const COMPETITORS: Record<string, {
       { feature: 'White-Label Client Pitch PDFs', us: '1-Click Export', them: 'Cluttered Ad-Heavy Pages' },
       { feature: 'User Interface', us: 'Clean Dark-Mode B2B Suite', them: '2012 Legacy Tables' },
     ],
+    partnerTitle: 'Ready to Scale Your Short-Form Output With Viral Hooks?',
+    partnerDesc: 'Turn your long-form videos, podcasts, and demos into high-retention Instagram Reels automatically using AI clipping and virality scoring.',
+    partnerCta: 'Try OpusClip Free',
+    partnerUrl: AFFILIATE_LINKS.opusclip,
   },
 };
 
@@ -96,7 +117,7 @@ export default function CompetitorVsPage({ params }: Props) {
       </div>
 
       {/* Comparison Matrix */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden mb-12 shadow-2xl">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden mb-10 shadow-2xl">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -125,6 +146,26 @@ export default function CompetitorVsPage({ params }: Props) {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/* Companion Partner Stack Callout */}
+      <div className="bg-slate-900/90 border border-sky-800/50 rounded-2xl p-6 mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="space-y-1">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-sky-400">
+            Recommended Companion Stack
+          </span>
+          <h3 className="text-base font-bold text-white">{data.partnerTitle}</h3>
+          <p className="text-xs text-slate-400 max-w-2xl">{data.partnerDesc}</p>
+        </div>
+        <a
+          href={data.partnerUrl}
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          className="px-5 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold whitespace-nowrap inline-flex items-center gap-1.5 transition shrink-0"
+        >
+          {data.partnerCta}
+          <ArrowUpRight className="w-4 h-4" />
+        </a>
       </div>
 
       {/* Direct Action Box */}
