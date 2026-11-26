@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Sparkles, Copy, Check } from 'lucide-react';
+import { Sparkles, Copy, Check, ArrowUpRight, Layers, Mail, Store } from 'lucide-react';
+import { AFFILIATE_LINKS } from '@/lib/affiliates';
 
 export default function BioGraderPage() {
   const [bio, setBio] = useState('');
@@ -69,7 +70,7 @@ export default function BioGraderPage() {
       </form>
 
       {result && !result.error && (
-        <div className="space-y-6">
+        <div className="space-y-6 mb-10">
           <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex items-center gap-6">
             <div className="w-20 h-20 rounded-2xl bg-rose-500/10 border border-rose-500/30 flex flex-col items-center justify-center shrink-0">
               <span className="text-2xl font-extrabold text-rose-400">{result.score}</span>
@@ -104,6 +105,86 @@ export default function BioGraderPage() {
           </div>
         </div>
       )}
+
+      {/* Link-in-Bio Destination & Funnel Stack */}
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <div>
+          <span className="text-[10px] font-bold uppercase tracking-wider text-sky-400">
+            Step 2 • Upgrade Your Bio Destination
+          </span>
+          <h2 className="text-lg font-bold text-white mt-0.5">
+            Where Should Your New Bio Link Send Traffic?
+          </h2>
+          <p className="text-xs text-slate-400 mt-1">
+            A high-converting bio only works if the landing page captures leads or sales immediately on mobile.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <a
+            href={AFFILIATE_LINKS.beacons}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-sky-500/50 transition flex flex-col justify-between space-y-3"
+          >
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <Store className="w-4 h-4 text-rose-400" />
+                <span className="text-[10px] font-bold text-slate-500">Creator Storefront</span>
+              </div>
+              <h3 className="text-sm font-bold text-white">Beacons.ai</h3>
+              <p className="text-xs text-slate-400">
+                Launch a mobile link-in-bio shop, digital product checkout &amp; auto-updating media kit free.
+              </p>
+            </div>
+            <span className="text-xs font-bold text-sky-400 inline-flex items-center gap-1">
+              Claim Free Store <ArrowUpRight className="w-3.5 h-3.5" />
+            </span>
+          </a>
+
+          <a
+            href={AFFILIATE_LINKS.systemeio}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-sky-500/50 transition flex flex-col justify-between space-y-3"
+          >
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <Layers className="w-4 h-4 text-emerald-400" />
+                <span className="text-[10px] font-bold text-slate-500">Full Funnel &amp; Courses</span>
+              </div>
+              <h3 className="text-sm font-bold text-white">Systeme.io</h3>
+              <p className="text-xs text-slate-400">
+                Build free opt-in funnels, host online courses &amp; automate email follow-ups in one place.
+              </p>
+            </div>
+            <span className="text-xs font-bold text-sky-400 inline-flex items-center gap-1">
+              Build Free Funnel <ArrowUpRight className="w-3.5 h-3.5" />
+            </span>
+          </a>
+
+          <a
+            href={AFFILIATE_LINKS.beehiiv}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-sky-500/50 transition flex flex-col justify-between space-y-3"
+          >
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <Mail className="w-4 h-4 text-amber-400" />
+                <span className="text-[10px] font-bold text-slate-500">Newsletter Growth</span>
+              </div>
+              <h3 className="text-sm font-bold text-white">Beehiiv</h3>
+              <p className="text-xs text-slate-400">
+                Turn Instagram profile clicks into owned newsletter subscribers with built-in monetization.
+              </p>
+            </div>
+            <span className="text-xs font-bold text-sky-400 inline-flex items-center gap-1">
+              Start Free on Beehiiv <ArrowUpRight className="w-3.5 h-3.5" />
+            </span>
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
