@@ -7,82 +7,87 @@ export interface AffiliateRecommendation {
   url: string;
 }
 
-// Replace these default URLs with your tracked PartnerStack / Impact / direct links as each approves
 export const AFFILIATE_LINKS = {
-  manychat: 'https://manychat.com',
-  beehiiv: 'https://www.beehiiv.com',
-  stanstore: 'https://www.stan.store',
-  metricool: 'https://metricool.com',
-  opusclip: 'https://www.opus.pro',
+  metricool: 'https://i.mtr.cool/viewinstaanon',
+  hypeauditor: 'https://hypeauditor.com/?source=vviewinstaanon',
+  beehiiv: 'https://www.beehiiv.com/?via=waylon-aho',
+  opusclip: 'https://opus.pro/?via=waylon',
+  // Swap these two once your PartnerStack approvals come through:
+  manychat: 'https://i.mtr.cool/viewinstaanon',
+  latersocial: 'https://i.mtr.cool/viewinstaanon',
 };
 
 export function getDynamicAffiliateRecommendation(audit: {
   niche?: string;
+  followers_count?: number;
   engagement_rate?: number;
   ad_saturation_pct?: number;
+  outlier_posts?: any[];
   funnel_stack?: {
     bio_platform?: string;
     primary_offer?: string;
-    dm_automation_detected?: boolean;
+    uses_dm_automation?: boolean;
   };
 }): AffiliateRecommendation {
   const niche = (audit.niche || '').toLowerCase();
-  const bioPlatform = (audit.funnel_stack?.bio_platform || '').toLowerCase();
+  const followers = Number(audit.followers_count || 0);
   const adPct = Number(audit.ad_saturation_pct || 0);
   const er = Number(audit.engagement_rate || 0);
+  const outliers = Array.isArray(audit.outlier_posts) ? audit.outlier_posts : [];
 
-  // 1. Finance, B2B SaaS, or Creator Economy educators -> Beehiiv (50% recurring)
+  // 1. High-follower brand/creator vetting or heavy sponsorship saturation -> HypeAuditor (20%-50% commission)
+  if (followers >= 100000 || adPct >= 20) {
+    return {
+      partnerName: 'HypeAuditor',
+      badge: 'Enterprise Vetting & Fraud Audit',
+      headline: 'Run Deep Audience Authenticity & Multi-Platform Influencer Checks',
+      description:
+        'Before signing sponsorship retainers on high-reach accounts, verify fake-follower ratios, audience demographics, and historical campaign ROI with HypeAuditor.',
+      ctaText: 'Audit Audience on HypeAuditor',
+      url: AFFILIATE_LINKS.hypeauditor,
+    };
+  }
+
+  // 2. Finance, B2B SaaS, or Creator Economy educators -> Beehiiv (50%-60% recurring)
   if (
     niche.includes('finance') ||
     niche.includes('saas') ||
     niche.includes('educator') ||
-    niche.includes('productivity')
+    niche.includes('investing') ||
+    niche.includes('business')
   ) {
     return {
       partnerName: 'Beehiiv',
       badge: 'Audience Ownership Stack',
       headline: 'Convert Instagram Traffic Into an Owned Newsletter Asset',
       description:
-        'Accounts in this vertical see 3x higher LTV when moving followers off rented social algorithms into a monetized newsletter funnel.',
+        'Accounts in this vertical generate significantly higher LTV when moving followers off rented social algorithms into a monetized newsletter funnel.',
       ctaText: 'Launch Free on Beehiiv',
       url: AFFILIATE_LINKS.beehiiv,
     };
   }
 
-  // 2. Basic Linktree or missing storefront -> Stan Store (20% recurring)
-  if (bioPlatform.includes('linktree') || bioPlatform.includes('none') || !bioPlatform) {
+  // 3. Strong viral Reel outliers or high engagement -> OpusClip (25% recurring)
+  if (outliers.length >= 2 || er >= 2.5) {
     return {
-      partnerName: 'Stan Store',
-      badge: 'Bio Funnel Upgrade',
-      headline: 'Replace Static Link Lists With a 1-Tap Creator Storefront',
+      partnerName: 'OpusClip',
+      badge: 'Viral Reel Multiplier',
+      headline: 'Turn Long-Form Videos Into High-Retention Reels in 1 Click',
       description:
-        'This profile is leaving bio clicks on the table. High-converting creators use Stan Store to sell digital guides, coaching, and lead magnets directly inside Instagram.',
-      ctaText: 'Try Stan Store Free',
-      url: AFFILIATE_LINKS.stanstore,
+        'This account wins with high-velocity short-form hooks. Use AI clipping, dynamic captions, and virality scoring to publish 10x more Reels per week.',
+      ctaText: 'Try OpusClip Free',
+      url: AFFILIATE_LINKS.opusclip,
     };
   }
 
-  // 3. High ad saturation or agency/brand profile -> Metricool (20% lifetime recurring)
-  if (adPct >= 25 || niche.includes('agency') || niche.includes('marketing')) {
-    return {
-      partnerName: 'Metricool',
-      badge: 'Agency & Brand Workflow',
-      headline: 'Automate Multi-Channel Scheduling & White-Label Reporting',
-      description:
-        'With heavy promotional cadence detected, managing Reels, carousels, and competitor benchmarks from one dashboard saves 6+ hours per week.',
-      ctaText: 'Start Free With Metricool',
-      url: AFFILIATE_LINKS.metricool,
-    };
-  }
-
-  // 4. Default high-engagement / Reel-driven accounts -> ManyChat
+  // 4. Default growth, scheduling & competitor reporting -> Metricool (25%-50% recurring)
   return {
-    partnerName: 'ManyChat',
-    badge: er >= 2.5 ? 'High-Engagement Bottleneck' : 'DM Funnel Multiplier',
-    headline: 'Turn Reel Comments Into Automated DM Leads on Autopilot',
+    partnerName: 'Metricool',
+    badge: 'All-in-One Social & Competitor Suite',
+    headline: 'Schedule Reels, Track Competitors & Automate Client Reports',
     description:
-      'Instead of telling viewers "link in bio," top creators trigger instant automated DMs whenever someone comments a keyword—boosting conversions up to 4x.',
-    ctaText: 'Automate DMs With ManyChat',
-    url: AFFILIATE_LINKS.manychat,
+      'Manage Instagram publishing, best-time-to-post analytics, and multi-channel competitor benchmarks from a single free dashboard.',
+    ctaText: 'Start Free With Metricool',
+    url: AFFILIATE_LINKS.metricool,
   };
 }
