@@ -12,8 +12,10 @@ export const AFFILIATE_LINKS = {
   hypeauditor: 'https://hypeauditor.com/?source=vviewinstaanon',
   beehiiv: 'https://www.beehiiv.com/?via=waylon-aho',
   opusclip: 'https://opus.pro/?via=waylon',
-  // Swap these two once your PartnerStack approvals come through:
-  manychat: 'https://i.mtr.cool/viewinstaanon',
+  systemeio: 'https://systeme.io/?sa=sa02874346577ecdf7d2ebeec92b6f306457f0e666',
+  beacons: 'https://beacons.ai/signup?c=viewinstaanon',
+  // Pending PartnerStack approvals (currently routed to active fallbacks):
+  manychat: 'https://systeme.io/?sa=sa02874346577ecdf7d2ebeec92b6f306457f0e666',
   latersocial: 'https://i.mtr.cool/viewinstaanon',
 };
 
@@ -34,6 +36,8 @@ export function getDynamicAffiliateRecommendation(audit: {
   const adPct = Number(audit.ad_saturation_pct || 0);
   const er = Number(audit.engagement_rate || 0);
   const outliers = Array.isArray(audit.outlier_posts) ? audit.outlier_posts : [];
+  const bioPlatform = (audit.funnel_stack?.bio_platform || '').toLowerCase();
+  const primaryOffer = (audit.funnel_stack?.primary_offer || '').toLowerCase();
 
   // 1. High-follower brand/creator vetting or heavy sponsorship saturation -> HypeAuditor (20%-50% commission)
   if (followers >= 100000 || adPct >= 20) {
@@ -48,7 +52,27 @@ export function getDynamicAffiliateRecommendation(audit: {
     };
   }
 
-  // 2. Finance, B2B SaaS, or Creator Economy educators -> Beehiiv (50%-60% recurring)
+  // 2. Coaches, courses, fitness, skincare, or digital product funnels -> Systeme.io (60% lifetime recurring)
+  if (
+    primaryOffer.includes('course') ||
+    primaryOffer.includes('coaching') ||
+    primaryOffer.includes('funnel') ||
+    niche.includes('fitness') ||
+    niche.includes('skincare') ||
+    niche.includes('coaching')
+  ) {
+    return {
+      partnerName: 'Systeme.io',
+      badge: 'All-in-One Funnel & Course Engine',
+      headline: 'Launch High-Converting Sales Funnels, Courses & Email Automation Free',
+      description:
+        'Replace fragmented bio tools with a single funnel builder, digital storefront, and automated email sequence engineered for creator monetization.',
+      ctaText: 'Build Free Funnel on Systeme.io',
+      url: AFFILIATE_LINKS.systemeio,
+    };
+  }
+
+  // 3. Finance, B2B SaaS, or Creator Economy educators -> Beehiiv (50%-60% recurring)
   if (
     niche.includes('finance') ||
     niche.includes('saas') ||
@@ -67,7 +91,25 @@ export function getDynamicAffiliateRecommendation(audit: {
     };
   }
 
-  // 3. Strong viral Reel outliers or high engagement -> OpusClip (25% recurring)
+  // 4. Weak or missing link-in-bio storefront -> Beacons.ai
+  if (
+    !bioPlatform ||
+    bioPlatform.includes('none') ||
+    bioPlatform.includes('direct') ||
+    bioPlatform.includes('linktr.ee')
+  ) {
+    return {
+      partnerName: 'Beacons.ai',
+      badge: 'Creator Storefront & Media Kit',
+      headline: 'Upgrade Your Link-in-Bio Into a Monetized Creator Storefront',
+      description:
+        'Capture brand deals with an auto-updating media kit, sell digital downloads, and convert profile visitors on mobile in minutes.',
+      ctaText: 'Claim Free Beacons Storefront',
+      url: AFFILIATE_LINKS.beacons,
+    };
+  }
+
+  // 5. Strong viral Reel outliers or high engagement -> OpusClip (25% recurring)
   if (outliers.length >= 2 || er >= 2.5) {
     return {
       partnerName: 'OpusClip',
@@ -80,7 +122,7 @@ export function getDynamicAffiliateRecommendation(audit: {
     };
   }
 
-  // 4. Default growth, scheduling & competitor reporting -> Metricool (25%-50% recurring)
+  // 6. Default growth, scheduling & competitor reporting -> Metricool (25%-50% recurring)
   return {
     partnerName: 'Metricool',
     badge: 'All-in-One Social & Competitor Suite',
