@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Upload, Eye } from 'lucide-react';
+import { Upload, Eye, Scissors, Calendar, ArrowUpRight } from 'lucide-react';
+import { AFFILIATE_LINKS } from '@/lib/affiliates';
 
 export default function SafeZonePage() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -23,7 +24,7 @@ export default function SafeZonePage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-12">
         <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
           <label className="flex flex-col items-center justify-center border-2 border-dashed border-slate-700 hover:border-rose-500 rounded-xl p-8 cursor-pointer transition">
             <Upload className="w-8 h-8 text-rose-400 mb-2" />
@@ -75,6 +76,58 @@ export default function SafeZonePage() {
             <span>@yourbrand • Follow</span>
             <span className="text-[9px] font-normal text-rose-100">Caption & Audio Ticker Dead Zone</span>
           </div>
+        </div>
+      </div>
+
+      {/* Reels Production & Scheduling Workflow Stack */}
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <div>
+          <span className="text-[10px] font-bold uppercase tracking-wider text-rose-400">
+            Reels Production &amp; Publishing Stack
+          </span>
+          <h2 className="text-lg font-bold text-white mt-0.5">
+            Automate Safe-Zone Captions &amp; Peak-Time Reel Scheduling
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <a
+            href={AFFILIATE_LINKS.opusclip}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-rose-500/50 transition flex items-start justify-between gap-4"
+          >
+            <div className="space-y-1">
+              <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                <Scissors className="w-4 h-4 text-rose-400" /> OpusClip AI Video Repurposing
+              </span>
+              <p className="text-xs text-slate-400">
+                Auto-crop horizontal videos into 9:16 vertical Reels with safe-zone-aligned animated captions and AI hook scoring.
+              </p>
+            </div>
+            <span className="text-xs font-bold text-rose-400 whitespace-nowrap inline-flex items-center gap-1 shrink-0 mt-1">
+              Try Free <ArrowUpRight className="w-3.5 h-3.5" />
+            </span>
+          </a>
+
+          <a
+            href={AFFILIATE_LINKS.metricool}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-sky-500/50 transition flex items-start justify-between gap-4"
+          >
+            <div className="space-y-1">
+              <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                <Calendar className="w-4 h-4 text-sky-400" /> Metricool Reels Scheduler
+              </span>
+              <p className="text-xs text-slate-400">
+                Auto-publish Reels at your audience’s exact peak engagement hours and track competitor retention benchmarks.
+              </p>
+            </div>
+            <span className="text-xs font-bold text-sky-400 whitespace-nowrap inline-flex items-center gap-1 shrink-0 mt-1">
+              Start Free <ArrowUpRight className="w-3.5 h-3.5" />
+            </span>
+          </a>
         </div>
       </div>
     </div>
