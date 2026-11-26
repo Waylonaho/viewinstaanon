@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { supabaseAdmin } from '@/lib/supabase';
 import { BarChart3, ArrowUpRight, Sparkles } from 'lucide-react';
+import { getDynamicAffiliateRecommendation } from '@/lib/affiliates';
 
 const NICHE_MAP: Record<string, { title: string; dbName: string; summary: string }> = {
   'd2c-fitness-supplements': {
@@ -92,6 +93,12 @@ export default async function NicheLeaderboardPage({ params }: Props) {
       ? Math.round(enriched.reduce((sum, a) => sum + Number(a.ad_saturation_pct || 0), 0) / enriched.length)
       : 19;
 
+  const nichePartner = getDynamicAffiliateRecommendation({
+    niche: niche.dbName,
+    engagement_rate: Number(avgER),
+    ad_saturation_pct: avgAdPct,
+  });
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
       <div className="max-w-3xl mb-10">
@@ -123,7 +130,7 @@ export default async function NicheLeaderboardPage({ params }: Props) {
       </div>
 
       {/* Leaderboard Table */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden mb-12">
+      <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden mb-10">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -173,6 +180,29 @@ export default async function NicheLeaderboardPage({ params }: Props) {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/* Niche-Specific Recommended SaaS Partner Card */}
+      <div className="mb-12 p-6 rounded-2xl bg-gradient-to-r from-sky-950/60 via-slate-900 to-slate-950 border border-sky-800/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">
+              {nichePartner.badge}
+            </span>
+            <span className="text-[11px] text-slate-500">Top {niche.title} Growth Stack</span>
+          </div>
+          <h3 className="text-base font-bold text-white">{nichePartner.headline}</h3>
+          <p className="text-xs text-slate-400 max-w-2xl">{nichePartner.description}</p>
+        </div>
+        <a
+          href={nichePartner.url}
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          className="px-5 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold whitespace-nowrap inline-flex items-center gap-1.5 transition shrink-0"
+        >
+          {nichePartner.ctaText}
+          <ArrowUpRight className="w-4 h-4" />
+        </a>
       </div>
 
       {/* Cross-Link Other Niche Indexes */}
