@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react';
 import {
   DollarSign, TrendingUp, GitBranch, Grid, Lock, Download,
-  Share2, ExternalLink, RefreshCw, Sparkles, CheckCircle2, AlertTriangle
+  Share2, ExternalLink, RefreshCw, Sparkles, CheckCircle2, AlertTriangle, ArrowUpRight
 } from 'lucide-react';
+import { getDynamicAffiliateRecommendation } from '@/lib/affiliates';
 
 export default function DossierClient({ audit, relatedAudits }: { audit: any; relatedAudits: any[] }) {
   const [activeTab, setActiveTab] = useState<'sponsors' | 'outliers' | 'funnel' | 'posts'>('sponsors');
@@ -19,7 +20,6 @@ export default function DossierClient({ audit, relatedAudits }: { audit: any; re
     if (params.get('pro') === 'unlocked') {
       localStorage.setItem('via_pro_pass', 'true');
       setIsPro(true);
-      // Clean URL without reloading
       window.history.replaceState({}, '', `/audit/${audit.username}`);
     } else if (localStorage.getItem('via_pro_pass') === 'true') {
       setIsPro(true);
@@ -30,6 +30,7 @@ export default function DossierClient({ audit, relatedAudits }: { audit: any; re
   const outliers = Array.isArray(audit.outlier_posts) ? audit.outlier_posts : [];
   const posts = Array.isArray(audit.raw_posts) ? audit.raw_posts : [];
   const funnel = audit.funnel_stack || {};
+  const dynamicPartner = getDynamicAffiliateRecommendation(audit);
 
   async function handleForceRefresh() {
     if (!isPro) {
@@ -398,31 +399,6 @@ export default function DossierClient({ audit, relatedAudits }: { audit: any; re
               )}
             </div>
           </div>
-
-          {/* Contextual High-Ticket B2B Affiliate Recommendation */}
-          <div className="p-5 rounded-xl bg-gradient-to-r from-sky-950/60 to-slate-950 border border-sky-800/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-sky-400">Recommended Growth Stack</span>
-              <h3 className="text-sm font-bold text-white mt-0.5">
-                {funnel.uses_dm_automation
-                  ? `Automate Comment-to-DM Funnels Like @${audit.username}`
-                  : `Capture 3x More Leads From Your Bio Link Than @${audit.username}`}
-              </h3>
-              <p className="text-xs text-slate-400 mt-1">
-                {funnel.uses_dm_automation
-                  ? 'Set up automated Instagram keyword triggers in under 5 minutes with official Meta-approved DM automation.'
-                  : 'Launch a high-converting digital storefront, lead magnet capture, and link-in-bio funnel in minutes.'}
-              </p>
-            </div>
-            <a
-              href={funnel.uses_dm_automation ? 'https://manychat.com' : 'https://stan.store'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold whitespace-nowrap transition"
-            >
-              {funnel.uses_dm_automation ? 'Try ManyChat Free →' : 'Launch Stan Store →'}
-            </a>
-          </div>
         </div>
       )}
 
@@ -452,9 +428,32 @@ export default function DossierClient({ audit, relatedAudits }: { audit: any; re
         </div>
       )}
 
+      {/* Persistent Dynamic Partner Recommendation Card (Always Visible Across All Tabs) */}
+      <div className="mt-8 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-sky-950/60 via-slate-900 to-slate-950 border border-sky-800/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 print:hidden">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">
+              {dynamicPartner.badge}
+            </span>
+            <span className="text-[11px] text-slate-500">Recommended Partner Stack</span>
+          </div>
+          <h3 className="text-base font-bold text-white">{dynamicPartner.headline}</h3>
+          <p className="text-xs text-slate-400 max-w-2xl">{dynamicPartner.description}</p>
+        </div>
+        <a
+          href={dynamicPartner.url}
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          className="px-5 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold whitespace-nowrap inline-flex items-center gap-1.5 transition shrink-0"
+        >
+          {dynamicPartner.ctaText}
+          <ArrowUpRight className="w-4 h-4" />
+        </a>
+      </div>
+
       {/* Persistent Upgrade Conversion Banner for Free Visitors */}
       {!isPro && (
-        <div id="upgrade-banner" className="mt-12 bg-gradient-to-r from-rose-950/70 via-slate-900 to-slate-950 border border-rose-500/40 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 print:hidden">
+        <div id="upgrade-banner" className="mt-6 bg-gradient-to-r from-rose-950/70 via-slate-900 to-slate-950 border border-rose-500/40 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 print:hidden">
           <div>
             <h3 className="text-xl font-extrabold text-white mb-1">
               Want the Full 90-Day Audit & White-Label Client PDF?
